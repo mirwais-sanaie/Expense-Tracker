@@ -7,11 +7,11 @@ function AppLayOut() {
     <div className="flex flex-col h-screen">
       <Header />
 
-      <div className="flex flex-1">
-        <div className="w-1/4">
+      <div className="flex flex-1 ">
+        <div className="w-1/4 bg-black-head-side">
           <SideBar />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 bg-black-total">
           <Outlet />
         </div>
       </div>

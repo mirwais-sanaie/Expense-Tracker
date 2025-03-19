@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <div className="flex justify-between py-3 px-4 bg-slate-200">
+    <div className="flex justify-between py-3 px-4 bg-black-head-side border-b-[0.1px] border-b-gray-700">
       <h1>
         <span>icon&</span>Expense Tracker
       </h1>

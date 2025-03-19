@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+.bg-black-total {
+  background-color: #141517;
+  color: #a6a7ab;
+}
+.bg-black-head-side {
+  background-color: #1a1b1e;
+  color: #a6a7ab;
+}

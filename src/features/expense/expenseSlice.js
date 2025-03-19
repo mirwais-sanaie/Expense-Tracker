@@ -9,11 +9,12 @@ const expenseSlice = createSlice({
   name: "expense",
   initialState,
   reducers: {
-    create : (state , action){
+    create: (state, action) => {
       state.label = action.payload.label;
       state.amount = action.payload.amount;
       state.category = action.payload.category;
-    }
+      console.log(action);
+    },
   },
 });
 

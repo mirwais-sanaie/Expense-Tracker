@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
-    <ul className="flex flex-col space-y-4 px-4 pt-3 bg-slate-600 h-full text-white">
+    <ul className="flex flex-col space-y-4 px-4 pt-3  h-full border-r-[0.1px] border-r-gray-800">
       <li>
         <Link to={"/"}>Home</Link>
       </li>

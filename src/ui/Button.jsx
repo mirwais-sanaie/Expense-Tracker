@@ -1,11 +1,16 @@
-function Button({ onClick, children }) {
+import { Button as ButtnUi } from "@mantine/core";
+
+function Button({ onClick, children, color }) {
   return (
-    <button
+    <ButtnUi
       onClick={onClick}
-      className="bg-slate-800 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded"
+      variant="filled"
+      color={color}
+      size="sm"
+      radius="sm"
     >
       {children}
-    </button>
+    </ButtnUi>
   );
 }
 

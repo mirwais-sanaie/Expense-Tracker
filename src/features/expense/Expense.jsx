@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
+import { create } from "./expenseSlice";
+import { Input, InputBase } from "@mantine/core";
+import { FaChevronDown as IconChevronDown } from "react-icons/fa";
 
 function Expense() {
   const [label, setLabel] = useState("");
@@ -16,60 +19,88 @@ function Expense() {
       category,
     };
 
-    disptach({create(expense)});
+    disptach(create(expense));
   }
 
+  const inputStyles = {
+    input: {
+      backgroundColor: "#25262B", // Set background color to black
+      color: "white", // Set text color to white for better visibility
+      border: "1px solid #333", // Optional: Add a border for better visibility
+    },
+  };
+  const chevron = <IconChevronDown size={16} stroke={1.5} />;
+
   return (
-    <div className="flex-col space-y-4 inline-block">
-      <h1>Add an Expense</h1>
-      <p>Adds on to your current expense amount.</p>
-      <hr />
+    <div className="flex-col inline-block p-15 space-y-4">
+      <div>
+        <h1 className="font-bold text-xl">Add an Expense</h1>
+        <p className="text-[13px]">Adds on to your current expense amount.</p>
+      </div>
+
       <div>
         <label htmlFor="">label</label>
-        <input
-          type="text"
+        <Input
           value={label}
+          type="text"
           onChange={(e) => setLabel(e.target.value)}
-          placeholder="desc..."
-          className="border border-black"
+          placeholder="Ex : Car"
+          bg={"#f2f3"}
+          color={"#fff"}
+          radius={"sm"}
+          styles={inputStyles}
+          className="cursor-pointer "
         />
       </div>
       <div>
         <label htmlFor="">amount</label>
-        <input
+        <Input
           type="text"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="amount..."
-          className="border
-        "
+          styles={inputStyles}
+          placeholder="Ex : 3000"
         />
       </div>
-      <hr />
-      <h1>Add a Category to Your Expense</h1>
-      <label htmlFor="">select</label>
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        name=""
-        id=""
-        className="bg-stone-400"
-      >
-        <option value="food">Food</option>
-        <option value="clothing">Clothing</option>
-        <option value="transport">Transport</option>
-        <option value="entertainment">Entertainment</option>
-        <option value="others">Others</option>
-      </select>
-      <div className="flex gap-x-4">
-        <Button>Add</Button>
-        <Button>Remove category</Button>
+
+      <div className="w-full h-[0.3px] bg-gray-100"></div>
+
+      <div className="space-y-1">
+        <h1 className="font-bold text-xl">Add a Category to Your Expense</h1>
+
+        <InputBase
+          label="Select a Category"
+          component="select"
+          mt="md"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          name=""
+          id=""
+          styles={inputStyles}
+          rightSection={chevron}
+        >
+          <option value="food">Food</option>
+          <option value="clothing">Clothing</option>
+          <option value="transport">Transport</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="others">Others</option>
+        </InputBase>
+
+        <div className="flex gap-x-4 mt-4">
+          <Button onClick={createExpense}>Add</Button>
+          <Button color={"red"}>Remove category</Button>
+        </div>
       </div>
-      S
+
       <hr />
-      <h1>Reset Your Expenses</h1>
-      <p> Resets your expenses back to 0</p>
-      <Button>Reset</Button>
+
+      <div className="space-y-4">
+        <div>
+          <h1 className="font-bold text-xl">Reset Your Expenses</h1>
+          <p className="text-[13px]"> Resets your expenses back to 0</p>
+        </div>
+        <Button color={"red"}>Reset</Button>
+      </div>
     </div>
   );
 }

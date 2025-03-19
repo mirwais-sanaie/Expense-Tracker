@@ -22,7 +22,7 @@ function Budget() {
         <input type="text" placeholder="amount" className="border" />
       </div>
 
-      <Button>Add to budget</Button>
+      <Button color={"blue"}>Add to budget</Button>
 
       <hr />
 

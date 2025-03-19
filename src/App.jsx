@@ -6,6 +6,9 @@ import Budget from "./features/budget/Budget";
 import Categories from "./features/charts/Categories";
 import CreateUser from "./features/user/CreateUser";
 
+import "@mantine/core/styles.css";
+import { MantineProvider } from "@mantine/core";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -30,7 +33,11 @@ function App() {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <MantineProvider>
+      <RouterProvider router={router} />
+    </MantineProvider>
+  );
 }
 
 export default App;
