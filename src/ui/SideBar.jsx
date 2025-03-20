@@ -1,19 +1,40 @@
 import { Link } from "react-router-dom";
+import { MdHome } from "react-icons/md";
+import { FaPlusCircle } from "react-icons/fa";
+import { FaDollarSign } from "react-icons/fa";
+import { IoStatsChartSharp } from "react-icons/io5";
 
 function SideBar() {
   return (
-    <ul className="flex flex-col space-y-4 px-4 pt-3  h-full border-r-[0.1px] border-r-gray-800">
-      <li>
-        <Link to={"/"}>Home</Link>
+    <ul className="flex flex-col px-4 pt-3  h-full border-r-[0.1px] border-r-[#2C2E33]">
+      <li className="hover:bg-[#25262B]  py-3 rounded px-3 text-lg">
+        <Link to={"/"} className="flex items-center gap-3">
+          <span>
+            <MdHome />
+          </span>
+          Home
+        </Link>
       </li>
-      <li>
-        <Link to={"/expense"}>Add Expense</Link>
+      <li className="hover:bg-[#25262B]  py-3 rounded px-3 text-lg">
+        <Link to={"/expense"} className="flex items-center gap-3">
+          <span>
+            <FaPlusCircle />
+          </span>
+          Add Expense
+        </Link>
       </li>
-      <li>
-        <Link to={"/budget"}>Add to Budget</Link>
+      <li className="hover:bg-[#25262B]  py-3 rounded px-3 text-lg">
+        <Link to={"/budget"} className="flex items-center gap-3">
+          <FaDollarSign /> Add to Budget
+        </Link>
       </li>
-      <li>
-        <Link to={"/categories"}>Categories</Link>
+      <li className="hover:bg-[#25262B]  py-3 rounded px-3 text-lg">
+        <Link to={"/categories"} className="flex items-center gap-3">
+          <span>
+            <IoStatsChartSharp />
+          </span>
+          Categories
+        </Link>
       </li>
     </ul>
   );
