@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
-  label: "",
-  amount: 0,
-  category: "",
+  expenseAmount: 0,
+  expenses: [],
 };
 
 const expenseSlice = createSlice({
@@ -10,13 +10,16 @@ const expenseSlice = createSlice({
   initialState,
   reducers: {
     create: (state, action) => {
-      state.label = action.payload.label;
-      state.amount = action.payload.amount;
-      state.category = action.payload.category;
+      state.expenses.push(action.payload);
+      state.expenseAmount += action.payload.amount;
       console.log(action);
+    },
+    resetExpense: (state) => {
+      state.expenseAmount = 0;
+      state.expenses = [];
     },
   },
 });
 
-export const { create } = expenseSlice.actions;
+export const { create, resetExpense } = expenseSlice.actions;
 export default expenseSlice.reducer;

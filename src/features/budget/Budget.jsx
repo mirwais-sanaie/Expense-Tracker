@@ -1,8 +1,18 @@
 import { Input } from "@mantine/core";
-
 import Button from "../../ui/Button";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setBudget, setIncomeSource, resetBudget } from "./budgetSlice";
+import { useNavigate } from "react-router-dom";
 
 function Budget() {
+  const [budgetState, setBudgetState] = useState("");
+  const [sourceAmount, setSourceAmount] = useState("");
+  const [sourceLabel, setSourceLabel] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const inputStyles = {
     input: {
       backgroundColor: "#25262B",
@@ -11,6 +21,23 @@ function Budget() {
       width: "36%",
     },
   };
+
+  function handleSetBudget() {
+    dispatch(setBudget(+budgetState));
+    navigate("/");
+  }
+  function handleSetIncomeSource() {
+    const newIncome = {
+      label: sourceLabel,
+      amount: +sourceAmount,
+    };
+    dispatch(setIncomeSource(newIncome));
+    navigate("/");
+  }
+  function handleReset() {
+    dispatch(resetBudget());
+    navigate("/");
+  }
 
   return (
     <div className="p-15">
@@ -30,12 +57,14 @@ function Budget() {
             type="text"
             placeholder="Ex : 5000"
             radius={"sm"}
+            value={budgetState}
+            onChange={(e) => setBudgetState(e.target.value)}
             styles={inputStyles}
             className="cursor-pointer "
           />
         </div>
         <div>
-          <Button>Set budget</Button>
+          <Button onClick={handleSetBudget}>Set budget</Button>
         </div>
       </div>
 
@@ -59,6 +88,8 @@ function Budget() {
             radius={"sm"}
             styles={inputStyles}
             className="cursor-pointer "
+            value={sourceLabel}
+            onChange={(e) => setSourceLabel(e.target.value)}
           />
         </div>
         <div>
@@ -71,11 +102,15 @@ function Budget() {
             radius={"sm"}
             styles={inputStyles}
             className="cursor-pointer "
+            value={sourceAmount}
+            onChange={(e) => setSourceAmount(e.target.value)}
           />
         </div>
 
         <div>
-          <Button color={"blue"}>Add to budget</Button>
+          <Button onClick={handleSetIncomeSource} color={"blue"}>
+            Add to budget
+          </Button>
         </div>
       </div>
 
@@ -86,7 +121,9 @@ function Budget() {
           <h1 className="font-bold text-xl">Reset Your Expenses</h1>
           <p className="text-[13px]"> Resets your expenses back to 0</p>
         </div>
-        <Button color={"red"}>Reset</Button>
+        <Button onClick={handleReset} color={"red"}>
+          Reset
+        </Button>
       </div>
     </div>
   );

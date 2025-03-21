@@ -1,25 +1,30 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
-import { create } from "./expenseSlice";
+import { create, resetExpense } from "./expenseSlice";
 import { Input, InputBase } from "@mantine/core";
-import { FaChevronDown as IconChevronDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Expense() {
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
 
   const disptach = useDispatch();
 
   function createExpense() {
     const expense = {
       label,
-      amount,
+      amount: +amount,
       category,
     };
 
     disptach(create(expense));
+    setLabel("");
+    setAmount("");
+    setCategory("");
+    navigate("/");
   }
 
   const inputStyles = {
@@ -30,7 +35,11 @@ function Expense() {
       width: "36%",
     },
   };
-  // const chevron = <IconChevronDown size={16} stroke={1.5} />;
+
+  function handleReset() {
+    disptach(resetExpense());
+    navigate("/");
+  }
 
   return (
     <div className="flex-col p-15 space-y-4">
@@ -81,11 +90,9 @@ function Expense() {
           id=""
           styles={inputStyles}
         >
-          <option value="food">Food</option>
-          <option value="clothing">Clothing</option>
-          <option value="transport">Transport</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="others">Others</option>
+          <option value="food">Groceries</option>
+          <option value="clothing">Entertainment</option>
+          <option value="transport">Uncategorized</option>
         </InputBase>
 
         <div className="flex gap-x-4 mt-4">
@@ -101,7 +108,9 @@ function Expense() {
           <h1 className="font-bold text-xl">Reset Your Expenses</h1>
           <p className="text-[13px]"> Resets your expenses back to 0</p>
         </div>
-        <Button color={"red"}>Reset</Button>
+        <Button onClick={handleReset} color={"red"}>
+          Reset
+        </Button>
       </div>
     </div>
   );
