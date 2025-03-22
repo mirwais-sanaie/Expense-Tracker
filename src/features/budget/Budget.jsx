@@ -1,7 +1,7 @@
 import { Input } from "@mantine/core";
 import Button from "../../ui/Button";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setBudget, setIncomeSource, resetBudget } from "./budgetSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ function Budget() {
   const [budgetState, setBudgetState] = useState("");
   const [sourceAmount, setSourceAmount] = useState("");
   const [sourceLabel, setSourceLabel] = useState("");
+  const { budget } = useSelector((state) => state.budget);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,10 +24,12 @@ function Budget() {
   };
 
   function handleSetBudget() {
+    if (!budgetState) return;
     dispatch(setBudget(+budgetState));
     navigate("/");
   }
   function handleSetIncomeSource() {
+    if (!budgetState || !sourceAmount || !sourceLabel) return;
     const newIncome = {
       label: sourceLabel,
       amount: +sourceAmount,
@@ -35,6 +38,10 @@ function Budget() {
     navigate("/");
   }
   function handleReset() {
+    if (!budget) {
+      alert("You dont have any budget.");
+      return;
+    }
     dispatch(resetBudget());
     navigate("/");
   }
@@ -118,8 +125,8 @@ function Budget() {
 
       <div className="space-y-4 pt-4">
         <div>
-          <h1 className="font-bold text-xl">Reset Your Expenses</h1>
-          <p className="text-[13px]"> Resets your expenses back to 0</p>
+          <h1 className="font-bold text-xl">Reset Your budget</h1>
+          <p className="text-[13px]"> Resets your budget back to 0</p>
         </div>
         <Button onClick={handleReset} color={"red"}>
           Reset

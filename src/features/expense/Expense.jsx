@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { create, resetExpense } from "./expenseSlice";
 import { Input, InputBase } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 function Expense() {
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Groceries");
   const navigate = useNavigate();
+  const { expenseAmount } = useSelector((state) => state.expense);
 
   const disptach = useDispatch();
 
   function createExpense() {
+    if (!label || !amount || !category) return;
     const expense = {
       label,
       amount: +amount,
@@ -37,6 +39,10 @@ function Expense() {
   };
 
   function handleReset() {
+    if (!expenseAmount) {
+      alert("You dont have any expense");
+      return;
+    }
     disptach(resetExpense());
     navigate("/");
   }
@@ -90,9 +96,11 @@ function Expense() {
           id=""
           styles={inputStyles}
         >
-          <option value="food">Groceries</option>
-          <option value="clothing">Entertainment</option>
-          <option value="transport">Uncategorized</option>
+          <option selected value="Groceries">
+            Groceries
+          </option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Uncategorized">Uncategorized</option>
         </InputBase>
 
         <div className="flex gap-x-4 mt-4">
