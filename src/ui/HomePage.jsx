@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
+import HistoryCom from "./historyCom";
 
 function HomePage() {
   const { budget } = useSelector((state) => state.budget);
   const { expenseAmount } = useSelector((state) => state.expense);
+  const { histories } = useSelector((state) => state.history);
   return (
     <div className="p-15">
       <h1 className="font-bold text-4xl">
@@ -23,16 +25,15 @@ function HomePage() {
       </div>
 
       <div className="mt-15">
-        <h1 className="font-bold">Transaction History</h1>
-        <div className="w-full h-[0.1px] bg-[#2C2E33]"></div>
+        <h1 className="font-bold mb-2">Transaction History</h1>
+        <div className="w-full h-[0.1px] bg-[#2C2E33] mb-2"></div>
 
         <div className="w-1/2">
-          <ul className="">
-            <li className="flex justify-between mt-5 bg-[#25262B] p-3 rounded border-e-4 border-e-[#FF8787]">
-              <span className="font-bold">car</span>
-              <span className="font-semibold text-[#FF8787]">-3000$</span>
-            </li>
-          </ul>
+          {!histories.length > 0 ? (
+            <p>You dont have any payment before...</p>
+          ) : (
+            <HistoryCom />
+          )}
         </div>
       </div>
     </div>

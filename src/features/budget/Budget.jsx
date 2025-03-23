@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setBudget, setIncomeSource, resetBudget } from "./budgetSlice";
 import { useNavigate } from "react-router-dom";
-import { useDisclosure } from "@mantine/hooks";
+import { randomId, useDisclosure } from "@mantine/hooks";
 import { Button as ButtonMan } from "@mantine/core";
 import ModalCom from "../../ui/ModalCom";
+import { addHistory } from "../history/historySlice";
 
 function Budget() {
   const [budgetState, setBudgetState] = useState("");
@@ -29,16 +30,33 @@ function Budget() {
 
   function handleSetBudget() {
     if (!budgetState) return;
+    const date = new Date().getDate();
+    const id = randomId();
+    const newBudget = {
+      amount: +budgetState,
+      label: `Budget has been set to : `,
+      date: date,
+      id: id,
+    };
     dispatch(setBudget(+budgetState));
+    dispatch(addHistory(newBudget));
     navigate("/");
   }
+
   function handleSetIncomeSource() {
-    if (!budgetState || !sourceAmount || !sourceLabel) return;
+    if (!sourceAmount || !sourceLabel) return;
+    const date = new Date().getDate();
+    const id = randomId();
+
     const newIncome = {
       label: sourceLabel,
       amount: +sourceAmount,
+      date: date,
+      id: id,
     };
     dispatch(setIncomeSource(newIncome));
+    dispatch(addHistory(newIncome));
+
     navigate("/");
   }
   function handleReset() {

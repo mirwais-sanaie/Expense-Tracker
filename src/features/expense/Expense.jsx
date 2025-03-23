@@ -9,6 +9,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Button as ButtonMan } from "@mantine/core";
 
 import { useNavigate } from "react-router-dom";
+import { addHistory } from "../history/historySlice";
 
 function Expense() {
   const [label, setLabel] = useState("");
@@ -23,13 +24,19 @@ function Expense() {
 
   function createExpense() {
     if (!label || !amount || !category) return;
+    const date = new Date().getDate();
+    const id = crypto.randomUUID();
     const expense = {
       label,
       amount: +amount,
       category,
+      date,
+      id,
+      isExpense: true,
     };
 
     disptach(create(expense));
+    disptach(addHistory(expense));
     setLabel("");
     setAmount("");
     setCategory("");
