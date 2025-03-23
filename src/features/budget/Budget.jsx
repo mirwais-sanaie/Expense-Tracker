@@ -4,12 +4,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setBudget, setIncomeSource, resetBudget } from "./budgetSlice";
 import { useNavigate } from "react-router-dom";
+import { useDisclosure } from "@mantine/hooks";
+import { Button as ButtonMan } from "@mantine/core";
+import ModalCom from "../../ui/ModalCom";
 
 function Budget() {
   const [budgetState, setBudgetState] = useState("");
   const [sourceAmount, setSourceAmount] = useState("");
   const [sourceLabel, setSourceLabel] = useState("");
   const { budget } = useSelector((state) => state.budget);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -123,14 +127,32 @@ function Budget() {
 
       <div className="w-full h-[0.1px] bg-[#2C2E33]"></div>
 
-      <div className="space-y-4 pt-4">
+      <div className="space-y-4">
         <div>
-          <h1 className="font-bold text-xl">Reset Your budget</h1>
-          <p className="text-[13px]"> Resets your budget back to 0</p>
+          <h1 className="font-bold text-xl">Reset Your Expenses</h1>
+          <p className="text-[13px]"> Resets your expenses back to 0</p>
         </div>
-        <Button onClick={handleReset} color={"red"}>
+
+        <ModalCom handleReset={handleReset} opened={opened} onClose={close}>
+          <h1 className="font-bold mb-2 me-3">
+            Are you sure you want to reset your budget to 0?
+          </h1>
+          <p className="text-[13px]">
+            This action can be later undone by deleting the transaction.
+          </p>
+        </ModalCom>
+        <ButtonMan
+          style={{
+            backgroundColor: "#FA5252",
+            color: "white",
+            borderColor: "#FA5252",
+          }}
+          variant="default"
+          onClick={open}
+          color={"red"}
+        >
           Reset
-        </Button>
+        </ButtonMan>
       </div>
     </div>
   );

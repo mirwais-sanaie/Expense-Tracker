@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import Button from "../../ui/Button";
+import ModalCom from "../../ui/ModalCom";
 import { useDispatch, useSelector } from "react-redux";
 import { create, resetExpense } from "./expenseSlice";
 import { Input, InputBase } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { Button as ButtonMan } from "@mantine/core";
+
 import { useNavigate } from "react-router-dom";
 
 function Expense() {
@@ -11,6 +16,8 @@ function Expense() {
   const [category, setCategory] = useState("Groceries");
   const navigate = useNavigate();
   const { expenseAmount } = useSelector((state) => state.expense);
+
+  const [opened, { open, close }] = useDisclosure(false);
 
   const disptach = useDispatch();
 
@@ -116,9 +123,29 @@ function Expense() {
           <h1 className="font-bold text-xl">Reset Your Expenses</h1>
           <p className="text-[13px]"> Resets your expenses back to 0</p>
         </div>
-        <Button onClick={handleReset} color={"red"}>
+
+        <ModalCom handleReset={handleReset} opened={opened} onClose={close}>
+          <h1 className="font-bold mb-2">
+            Are you sure you want to reset your expenses to 0?
+          </h1>
+          <p className="text-[13px]">
+            This action can be later undone by deleting the transaction. However
+            the expense categories will return and the amount will be put under
+            Uncategorized
+          </p>
+        </ModalCom>
+        <ButtonMan
+          style={{
+            backgroundColor: "#FA5252",
+            color: "white",
+            borderColor: "#FA5252",
+          }}
+          variant="default"
+          onClick={open}
+          color={"red"}
+        >
           Reset
-        </Button>
+        </ButtonMan>
       </div>
     </div>
   );
