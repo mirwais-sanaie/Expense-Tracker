@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { MdHome } from "react-icons/md";
-import { FaPlusCircle } from "react-icons/fa";
-import { FaDollarSign } from "react-icons/fa";
 import { IoStatsChartSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
-
+import { IoHomeOutline } from "react-icons/io5";
+import { FiPlusCircle } from "react-icons/fi";
+import { LuDollarSign } from "react-icons/lu";
 function SideBar() {
   const theme = useSelector((state) => state.theme.mode);
   return (
@@ -12,7 +11,7 @@ function SideBar() {
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/"} className="flex items-center gap-3">
           <span>
-            <MdHome color="#228BE6" />
+            <IoHomeOutline color="#228BE6" />
           </span>
           Home
         </Link>
@@ -20,14 +19,14 @@ function SideBar() {
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/expense"} className="flex items-center gap-3">
           <span>
-            <FaPlusCircle color="#228BE6" />
+            <FiPlusCircle color="#228BE6" />
           </span>
           Add Expense
         </Link>
       </li>
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/budget"} className="flex items-center gap-3">
-          <FaDollarSign color="#228BE6" /> Add to Budget
+          <LuDollarSign color="#228BE6" /> Add to Budget
         </Link>
       </li>
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
