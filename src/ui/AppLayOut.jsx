@@ -12,7 +12,9 @@ function AppLayOut() {
       <Header />
 
       <div className="flex flex-1 ">
-        <div className={`sidebar w-1/4 ${theme}`}>
+        <div
+          className={`sidebar w-1/4 ${theme} border-r-[0.1px] border-r-[#2C2E33]`}
+        >
           <SideBar />
         </div>
         <div className={`outlet flex-1 ${theme}`}>

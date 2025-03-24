@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <div
-      className={`header flex justify-between py-4 px-4 ${theme} border-b-[0.1px] border-b-[#2C2E33]`}
+      className={`header flex justify-between py-4 px-4 ${theme} border-b-[0.1px]`}
     >
       <h1 className="flex gap-2 items-center text-2xl">
         <span>

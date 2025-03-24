@@ -2,6 +2,9 @@
   background-color: #1a1b1e;
   color: #a6a7ab;
 }
+.sidebar.light {
+  border-right-color: #e9ecef;
+}
 .outlet.dark {
   background-color: #141517;
   color: #a6a7ab;
@@ -12,6 +15,10 @@
 .header.dark {
   background-color: #1a1b1e;
   color: #a6a7ab;
+  border-bottom-color: #2c2e33;
+}
+.header.light {
+  border-bottom-color: #e9ecef;
 }
 .showRecords.light {
   background-color: #fff;

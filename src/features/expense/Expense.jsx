@@ -16,6 +16,7 @@ function Expense() {
   const [category, setCategory] = useState("Groceries");
   const navigate = useNavigate();
   const { expenseAmount } = useSelector((state) => state.expense);
+  const theme = useSelector((state) => state.theme.mode);
 
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -42,12 +43,21 @@ function Expense() {
     navigate("/");
   }
 
-  const inputStyles = {
+  const inputStyleDark = {
     input: {
       backgroundColor: "#25262B",
       color: "white",
       border: "1px solid #333",
       width: "36%",
+    },
+  };
+  const inputStyleLight = {
+    input: {
+      backgroundColor: "#fff",
+      color: "#495057",
+      border: "1px solid #ced4da",
+      width: "36%",
+      fontWeight: "500",
     },
   };
 
@@ -60,6 +70,12 @@ function Expense() {
     navigate("/");
   }
 
+  const colorStyle = theme === "dark" ? "text-gray-300" : "text-[#212529]";
+  const borderStyle =
+    theme === "dark"
+      ? "w-full h-[0.1px] bg-[#2C2E33]"
+      : "w-full h-[0.1px] bg-[#CED4DA]";
+
   return (
     <div className="flex-col p-15 space-y-4">
       <div>
@@ -68,7 +84,7 @@ function Expense() {
       </div>
 
       <div>
-        <label htmlFor="" className="text-gray-300">
+        <label htmlFor="" className={colorStyle}>
           Label <span className="text-red-600">*</span>
         </label>
         <Input
@@ -77,24 +93,24 @@ function Expense() {
           onChange={(e) => setLabel(e.target.value)}
           placeholder="Ex : Car"
           radius={"sm"}
-          styles={inputStyles}
+          styles={theme === "dark" ? inputStyleDark : inputStyleLight}
           className="cursor-pointer "
         />
       </div>
       <div>
-        <label htmlFor="" className="text-gray-300">
+        <label htmlFor="" className={colorStyle}>
           Amount <span className="text-red-600">*</span>
         </label>
         <Input
           type="text"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          styles={inputStyles}
+          styles={theme === "dark" ? inputStyleDark : inputStyleLight}
           placeholder="Ex : 3000"
         />
       </div>
 
-      <div className="w-full h-[0.1px] bg-[#2C2E33]"></div>
+      <div className={borderStyle}></div>
 
       <div className="space-y-1">
         <h1 className="font-bold text-xl">Add a Category to Your Expense</h1>
@@ -107,7 +123,7 @@ function Expense() {
           onChange={(e) => setCategory(e.target.value)}
           name=""
           id=""
-          styles={inputStyles}
+          styles={theme === "dark" ? inputStyleDark : inputStyleLight}
         >
           <option selected value="Groceries">
             Groceries
@@ -122,7 +138,7 @@ function Expense() {
         </div>
       </div>
 
-      <div className="w-full h-[0.1px] bg-[#2C2E33]"></div>
+      <div className={borderStyle}></div>
 
       <div className="space-y-4">
         <div>

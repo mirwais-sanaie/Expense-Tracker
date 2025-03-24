@@ -15,11 +15,12 @@ function Budget() {
   const [sourceLabel, setSourceLabel] = useState("");
   const { budget } = useSelector((state) => state.budget);
   const [opened, { open, close }] = useDisclosure(false);
+  const theme = useSelector((state) => state.theme.mode);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const inputStyles = {
+  const inputStyleDark = {
     input: {
       backgroundColor: "#25262B",
       color: "white",
@@ -27,7 +28,15 @@ function Budget() {
       width: "36%",
     },
   };
-
+  const inputStyleLight = {
+    input: {
+      backgroundColor: "#fff",
+      color: "#495057",
+      border: "1px solid #ced4da",
+      width: "36%",
+      fontWeight: "500",
+    },
+  };
   function handleSetBudget() {
     if (!budgetState) return;
     const date = new Date().getDate();
@@ -68,6 +77,12 @@ function Budget() {
     navigate("/");
   }
 
+  const colorStyle = theme === "dark" ? "text-gray-300" : "text-[#212529]";
+  const borderStyle =
+    theme === "dark"
+      ? "w-full h-[0.1px] bg-[#2C2E33]"
+      : "w-full h-[0.1px] bg-[#CED4DA]";
+
   return (
     <div className="p-15">
       <div className="space-y-5 pb-4">
@@ -79,7 +94,7 @@ function Budget() {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="" className="text-gray-300">
+          <label htmlFor="" className={colorStyle}>
             Enter your budget <span className="text-red-600">*</span>
           </label>
           <Input
@@ -88,7 +103,7 @@ function Budget() {
             radius={"sm"}
             value={budgetState}
             onChange={(e) => setBudgetState(e.target.value)}
-            styles={inputStyles}
+            styles={theme === "dark" ? inputStyleDark : inputStyleLight}
             className="cursor-pointer "
           />
         </div>
@@ -97,7 +112,7 @@ function Budget() {
         </div>
       </div>
 
-      <div className="w-full h-[0.1px] bg-[#2C2E33]"></div>
+      <div className={borderStyle}></div>
 
       <div className="space-y-4 py-6">
         <div>
@@ -108,28 +123,28 @@ function Budget() {
         </div>
 
         <div>
-          <label htmlFor="" className="text-gray-300">
+          <label htmlFor="" className={colorStyle}>
             Label <span className="text-red-600">*</span>
           </label>
           <Input
             type="text"
             placeholder="Ex : Christmas bouns"
             radius={"sm"}
-            styles={inputStyles}
+            styles={theme === "dark" ? inputStyleDark : inputStyleLight}
             className="cursor-pointer "
             value={sourceLabel}
             onChange={(e) => setSourceLabel(e.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="" className="text-gray-300">
+          <label htmlFor="" className={colorStyle}>
             Amount <span className="text-red-600">*</span>
           </label>
           <Input
             type="text"
             placeholder="Ex : 3000"
             radius={"sm"}
-            styles={inputStyles}
+            styles={theme === "dark" ? inputStyleDark : inputStyleLight}
             className="cursor-pointer "
             value={sourceAmount}
             onChange={(e) => setSourceAmount(e.target.value)}
@@ -143,7 +158,7 @@ function Budget() {
         </div>
       </div>
 
-      <div className="w-full h-[0.1px] bg-[#2C2E33]"></div>
+      <div className={borderStyle}></div>
 
       <div className="space-y-4">
         <div>

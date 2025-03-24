@@ -31,7 +31,11 @@ function HomePage() {
 
       <div className="mt-15">
         <h1 className="font-bold mb-2">Transaction History</h1>
-        <div className="w-full h-[0.1px] bg-[#2C2E33] mb-2"></div>
+        <div
+          className={`w-full h-[0.1px] ${
+            theme === "dark" ? "bg-[#2C2E33]" : "bg-[#E9ECEF]"
+          } mb-2`}
+        ></div>
 
         <div className="w-1/2">
           {!histories.length > 0 ? (
