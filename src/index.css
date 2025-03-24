@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
-.bg-black-total {
-  background-color: #141517;
-  color: #a6a7ab;
+::-webkit-scrollbar {
+  width: 10px;
 }
-.bg-black-head-side {
-  background-color: #1a1b1e;
-  color: #a6a7ab;
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #25262b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b8b9bc;
 }

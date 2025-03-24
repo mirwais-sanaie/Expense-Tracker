@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
+
 function HistoryItem({ history }) {
+  const theme = useSelector((state) => state.theme.mode);
   return (
     <li
-      className={`flex justify-between mt-5 bg-[#25262B] p-3 rounded border-e-4`}
+      className={`history-item ${theme} flex justify-between mt-5 p-3 rounded border-e-4`}
       style={{
         borderRightColor: history.isExpense ? "#FF8787" : "#69DB7C", // Dynamic border color
       }}

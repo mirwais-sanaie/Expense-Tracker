@@ -1,0 +1,43 @@
+.sidebar.dark {
+  background-color: #1a1b1e;
+  color: #a6a7ab;
+}
+.outlet.dark {
+  background-color: #141517;
+  color: #a6a7ab;
+}
+.outlet.light {
+  background-color: #f8f9fa;
+}
+.header.dark {
+  background-color: #1a1b1e;
+  color: #a6a7ab;
+}
+.showRecords.light {
+  background-color: #fff;
+  color: #000;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.showRecords.dark {
+  background-color: #25262b;
+}
+.list-item.dark:hover {
+  background-color: #25262b;
+}
+.list-item.light:hover {
+  background-color: #f8f9fa;
+}
+.category-item.dark {
+  background-color: #25262b;
+}
+.category-item.light {
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.history-item.dark {
+  background-color: #25262b;
+}
+.history-item.light {
+  background-color: #fff;
+  color: black;
+}

@@ -3,6 +3,7 @@ import userSlice from "./features/user/userSlice";
 import expenseSlice from "./features/expense/expenseSlice";
 import budgetSlice from "./features/budget/budgetSlice";
 import historySlice from "./features/history/historySlice";
+import themeSlice from "./features/theme/themeSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     expense: expenseSlice,
     budget: budgetSlice,
     history: historySlice,
+    theme: themeSlice,
   },
 });
 
