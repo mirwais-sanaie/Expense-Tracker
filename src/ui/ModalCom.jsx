@@ -1,7 +1,23 @@
+/* eslint-disable no-unused-vars */
 import { Modal } from "@mantine/core";
 import Button from "./Button";
+import { useDispatch } from "react-redux";
+import { deleteExpense } from "../features/expense/expenseSlice";
+import { deleteBudget } from "../features/budget/budgetSlice";
+import { deleteHistory } from "../features/history/historySlice";
 
 function ModalCom({ opened, onClose, handleReset, children, history }) {
+  const dispatch = useDispatch();
+
+  function handleDelete(id) {
+    if (history.isExpense) {
+      dispatch(deleteExpense(id));
+    } else {
+      dispatch(deleteBudget(id));
+    }
+    dispatch(deleteHistory(id));
+  }
+
   if (handleReset) {
     return (
       <Modal opened={opened} onClose={onClose} centered title={children}>
@@ -42,7 +58,9 @@ function ModalCom({ opened, onClose, handleReset, children, history }) {
           <Button onClick={onClose} color={"blue"}>
             Exit
           </Button>
-          <Button color={"red"}>Delete item</Button>
+          <Button onClick={() => handleDelete(history.id)} color={"red"}>
+            Delete item
+          </Button>
         </div>
       </div>
     </Modal>
