@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Modal } from "@mantine/core";
 import Button from "./Button";
 import { useDispatch } from "react-redux";

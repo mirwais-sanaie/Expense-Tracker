@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import HistoryCom from "./historyCom";
+import Chart from "./Chart";
 
 function HomePage() {
   const { budget } = useSelector((state) => state.budget);
@@ -29,20 +30,25 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="mt-15">
-        <h1 className="font-bold mb-2">Transaction History</h1>
-        <div
-          className={`w-full h-[0.1px] ${
-            theme === "dark" ? "bg-[#2C2E33]" : "bg-[#E9ECEF]"
-          } mb-2`}
-        ></div>
+      <div className="mt-15 flex flex-col">
+        <div>
+          <h1 className="font-bold mb-2">Transaction History</h1>
+          <div
+            className={`w-full h-[0.1px] ${
+              theme === "dark" ? "bg-[#2C2E33]" : "bg-[#E9ECEF]"
+            } mb-2`}
+          ></div>
 
-        <div className="w-1/2">
-          {!histories.length > 0 ? (
-            <p>You dont have any payment before...</p>
-          ) : (
-            <HistoryCom />
-          )}
+          <div className="w-1/2">
+            {!histories.length > 0 ? (
+              <p>You dont have any payment before...</p>
+            ) : (
+              <HistoryCom />
+            )}
+          </div>
+        </div>
+        <div>
+          <Chart />
         </div>
       </div>
     </div>
