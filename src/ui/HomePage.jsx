@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import HistoryCom from "./historyCom";
+import HistoryCom from "./HistoryCom";
 import Chart from "./Chart";
 
 function HomePage() {
