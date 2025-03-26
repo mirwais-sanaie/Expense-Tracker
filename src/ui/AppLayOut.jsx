@@ -3,17 +3,21 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import "./AppLayOut.css";
 import { useSelector } from "react-redux";
+import { useDisclosure } from "@mantine/hooks";
 
 function AppLayOut() {
   const theme = useSelector((state) => state.theme.mode);
+  const [opened, { toggle }] = useDisclosure();
 
   return (
-    <div className={`app flex flex-col h-screen`}>
-      <Header />
+    <div className={`app h-screen relative`}>
+      <Header opened={opened} toggle={toggle} />
 
-      <div className="flex flex-1 ">
+      <div className="md:flex md:flex-1 mt-15">
         <div
-          className={`sidebar w-1/4 ${theme} border-r-[0.1px] border-r-[#2C2E33]`}
+          className={`sidebar ${theme} ${
+            !opened && "hidden"
+          } lg:block  lg:w-1/4 border-r-[0.1px] border-r-[#2C2E33]`}
         >
           <SideBar />
         </div>

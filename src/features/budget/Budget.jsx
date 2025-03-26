@@ -25,7 +25,6 @@ function Budget() {
       backgroundColor: "#25262B",
       color: "white",
       border: "1px solid #333",
-      width: "36%",
     },
   };
   const inputStyleLight = {
@@ -33,7 +32,6 @@ function Budget() {
       backgroundColor: "#fff",
       color: "#495057",
       border: "1px solid #ced4da",
-      width: "36%",
       fontWeight: "500",
     },
   };
@@ -84,7 +82,7 @@ function Budget() {
       : "w-full h-[0.1px] bg-[#CED4DA]";
 
   return (
-    <div className="p-15">
+    <div className="p-8 lg:p-15">
       <div className="space-y-5 pb-4">
         <div>
           <h1 className="font-bold text-xl">Set Your Income / Budget</h1>
@@ -104,7 +102,7 @@ function Budget() {
             value={budgetState}
             onChange={(e) => setBudgetState(e.target.value)}
             styles={theme === "dark" ? inputStyleDark : inputStyleLight}
-            className="cursor-pointer "
+            className="w-full md:w-2/3 lg:w-[36%]"
           />
         </div>
         <div>
@@ -131,7 +129,7 @@ function Budget() {
             placeholder="Ex : Christmas bouns"
             radius={"sm"}
             styles={theme === "dark" ? inputStyleDark : inputStyleLight}
-            className="cursor-pointer "
+            className="w-full md:w-2/3 lg:w-[36%]"
             value={sourceLabel}
             onChange={(e) => setSourceLabel(e.target.value)}
           />
@@ -145,7 +143,7 @@ function Budget() {
             placeholder="Ex : 3000"
             radius={"sm"}
             styles={theme === "dark" ? inputStyleDark : inputStyleLight}
-            className="cursor-pointer "
+            className="w-full md:w-2/3 lg:w-[36%]"
             value={sourceAmount}
             onChange={(e) => setSourceAmount(e.target.value)}
           />

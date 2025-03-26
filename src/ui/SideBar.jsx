@@ -11,7 +11,7 @@ function SideBar() {
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/"} className="flex items-center gap-3">
           <span>
-            <IoHomeOutline color="#228BE6" />
+            <IoHomeOutline color="#A5D8FF" />
           </span>
           Home
         </Link>
@@ -19,20 +19,20 @@ function SideBar() {
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/expense"} className="flex items-center gap-3">
           <span>
-            <FiPlusCircle color="#228BE6" />
+            <FiPlusCircle color="#A5D8FF" />
           </span>
           Add Expense
         </Link>
       </li>
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/budget"} className="flex items-center gap-3">
-          <LuDollarSign color="#228BE6" /> Add to Budget
+          <LuDollarSign color="#A5D8FF" /> Add to Budget
         </Link>
       </li>
       <li className={`list-item ${theme}  py-3 rounded px-3 text-lg`}>
         <Link to={"/categories"} className="flex items-center gap-3">
           <span>
-            <IoStatsChartSharp color="#228BE6" />
+            <IoStatsChartSharp color="#A5D8FF" />
           </span>
           Categories
         </Link>

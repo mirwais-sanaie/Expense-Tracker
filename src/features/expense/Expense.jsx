@@ -48,7 +48,6 @@ function Expense() {
       backgroundColor: "#25262B",
       color: "white",
       border: "1px solid #333",
-      width: "36%",
     },
   };
   const inputStyleLight = {
@@ -56,7 +55,6 @@ function Expense() {
       backgroundColor: "#fff",
       color: "#495057",
       border: "1px solid #ced4da",
-      width: "36%",
       fontWeight: "500",
     },
   };
@@ -77,7 +75,7 @@ function Expense() {
       : "w-full h-[0.1px] bg-[#CED4DA]";
 
   return (
-    <div className="flex-col p-15 space-y-4">
+    <div className="flex-col p-8 lg:p-15 space-y-4">
       <div>
         <h1 className="font-bold text-xl">Add an Expense</h1>
         <p className="text-[13px]">Adds on to your current expense amount.</p>
@@ -94,7 +92,7 @@ function Expense() {
           placeholder="Ex : Car"
           radius={"sm"}
           styles={theme === "dark" ? inputStyleDark : inputStyleLight}
-          className="cursor-pointer "
+          className="w-full md:w-2/3 lg:w-[36%]"
         />
       </div>
       <div>
@@ -107,6 +105,7 @@ function Expense() {
           onChange={(e) => setAmount(e.target.value)}
           styles={theme === "dark" ? inputStyleDark : inputStyleLight}
           placeholder="Ex : 3000"
+          className="w-full md:w-2/3 lg:w-[36%]"
         />
       </div>
 
@@ -124,6 +123,7 @@ function Expense() {
           name=""
           id=""
           styles={theme === "dark" ? inputStyleDark : inputStyleLight}
+          className="w-full md:w-2/3 lg:w-[36%]"
         >
           <option selected value="Groceries">
             Groceries

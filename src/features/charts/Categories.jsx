@@ -24,9 +24,9 @@ function Categories() {
 
   console.log(result);
   return (
-    <div className="p-15">
+    <div className="p-8 lg:p-15">
       <h1 className="font-bold text-4xl">Spending Categories</h1>
-      <div className="grid grid-cols-4 gap-2 pt-12">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 pt-12">
         <div
           className={`category-item ${theme} h-30  flex flex-col items-center justify-center`}
         >

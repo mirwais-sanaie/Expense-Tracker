@@ -8,20 +8,20 @@ function HomePage() {
   const { histories } = useSelector((state) => state.history);
   const theme = useSelector((state) => state.theme.mode);
   return (
-    <div className="p-15">
-      <h1 className="font-bold text-4xl">
+    <div className="p-8 lg:p-15">
+      <h1 className="font-bold text-2xl  lg:text-4xl ">
         YOUR BALANCE IS: ${budget - expenseAmount}
       </h1>
 
-      <div className="flex gap-3  mt-10">
+      <div className="flex flex-col md:flex-row gap-3  mt-10">
         <div
-          className={`showRecords ${theme} w-1/2 h-50 p-12 flex text-center flex-col gap-y-4`}
+          className={`showRecords ${theme} w-full md:w-1/2 h-50 p-12 flex text-center flex-col gap-y-4`}
         >
           <h2 className="font-bold text-3xl">Income / Budget</h2>
           <span className="text-[#69DB7C] text-3xl font-bold">${budget}</span>
         </div>
         <div
-          className={`showRecords ${theme} w-1/2 h-50 p-12 flex text-center flex-col gap-y-4`}
+          className={`showRecords ${theme} w-full md:w-1/2  h-50 p-12 flex text-center flex-col gap-y-4`}
         >
           <h2 className="font-bold text-3xl">Expenses</h2>
           <span className="text-[#FF8787] text-3xl font-bold">
@@ -39,7 +39,7 @@ function HomePage() {
             } mb-2`}
           ></div>
 
-          <div className="w-1/2">
+          <div className="md:w-1/2 w-full">
             {!histories.length > 0 ? (
               <p>You dont have any payment before...</p>
             ) : (
